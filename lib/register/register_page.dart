@@ -45,57 +45,118 @@ class RegisterPage extends StatelessWidget {
           child: Column(
             children: [
               const SizedBox(
-                height: 50,
+                height: 30,
               ),
-              const SizedBox(
-                height: 50,
-              ),
-              Opacity(
-                opacity: 0.5,
-                child: TextFormField(
-                  decoration: const InputDecoration(
-                    prefixIcon: Padding(
-                      padding: EdgeInsets.all(0.0),
-                      child: Icon(
-                        Icons.account_circle_outlined,
-                        color: Colors.black,
-                      ),
+              TextFormField(
+                decoration: const InputDecoration(
+                  prefixIcon: Padding(
+                    padding: EdgeInsets.all(0.0),
+                    child: Icon(
+                      Icons.person_outline_rounded,
+                      color: Colors.black,
                     ),
-                    labelText: 'Username',
-                    labelStyle: TextStyle(color: Colors.black),
-                    border: InputBorder.none,
-                    fillColor: Color(0xffbbc1c1),
-                    filled: true,
                   ),
+                  labelText: 'Firstname',
+                  labelStyle: TextStyle(color: Colors.black),
+                  border: InputBorder.none,
+                  fillColor: Color(0xffbbc1c1),
+                  filled: true,
                 ),
               ),
               const SizedBox(
-                height: 10,
+                height: 5,
               ),
-              Opacity(
-                opacity: 0.5,
-                child: TextFormField(
-                  decoration: const InputDecoration(
-                    prefixIcon: Padding(
-                      padding: EdgeInsets.all(0.0),
-                      child: Icon(
-                        Icons.lock_outline,
-                        color: Colors.black,
-                      ),
+              TextFormField(
+                decoration: const InputDecoration(
+                  prefixIcon: Padding(
+                    padding: EdgeInsets.all(0.0),
+                    child: Icon(
+                      Icons.person_outline_rounded,
+                      color: Colors.black,
                     ),
-                    labelText: 'Password',
-                    labelStyle: TextStyle(color: Colors.black),
-                    border: InputBorder.none,
-                    fillColor: Color(0xffbbc1c1),
-                    filled: true,
                   ),
+                  labelText: 'Lastname',
+                  labelStyle: TextStyle(color: Colors.black),
+                  border: InputBorder.none,
+                  fillColor: Color(0xffbbc1c1),
+                  filled: true,
                 ),
               ),
               const SizedBox(
-                height: 10,
+                height: 5,
+              ),
+              TextFormField(
+                decoration: const InputDecoration(
+                  prefixIcon: Padding(
+                    padding: EdgeInsets.all(0.0),
+                    child: Icon(
+                      Icons.email_outlined,
+                      color: Colors.black,
+                    ),
+                  ),
+                  labelText: 'E-mail',
+                  labelStyle: TextStyle(color: Colors.black),
+                  border: InputBorder.none,
+                  fillColor: Color(0xffbbc1c1),
+                  filled: true,
+                ),
               ),
               const SizedBox(
-                height: 100,
+                height: 5,
+              ),
+              TextFormField(
+                decoration: const InputDecoration(
+                  prefixIcon: Padding(
+                    padding: EdgeInsets.all(0.0),
+                    child: Icon(
+                      Icons.phone_android_outlined,
+                      color: Colors.black,
+                    ),
+                  ),
+                  labelText: 'Telephone',
+                  labelStyle: TextStyle(color: Colors.black),
+                  border: InputBorder.none,
+                  fillColor: Color(0xffbbc1c1),
+                  filled: true,
+                ),
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+              TextFormField(
+                decoration: const InputDecoration(
+                  prefixIcon: Padding(
+                    padding: EdgeInsets.all(0.0),
+                    child: Icon(
+                      Icons.account_circle_outlined,
+                      color: Colors.black,
+                    ),
+                  ),
+                  labelText: 'Username',
+                  labelStyle: TextStyle(color: Colors.black),
+                  border: InputBorder.none,
+                  fillColor: Color(0xffbbc1c1),
+                  filled: true,
+                ),
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+              TextFormField(
+                decoration: const InputDecoration(
+                  prefixIcon: Padding(
+                    padding: EdgeInsets.all(0.0),
+                    child: Icon(
+                      Icons.lock_outline,
+                      color: Colors.black,
+                    ),
+                  ),
+                  labelText: 'Password',
+                  labelStyle: TextStyle(color: Colors.black),
+                  border: InputBorder.none,
+                  fillColor: Color(0xffbbc1c1),
+                  filled: true,
+                ),
               ),
             ],
           ),
