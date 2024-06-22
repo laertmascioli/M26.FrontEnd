@@ -155,40 +155,36 @@ class _LoginPageState extends State<LoginPage> {
             const SizedBox(
               height: 10,
             ),
-            Container(
-              height: 60,
-              alignment: Alignment.center,
-              decoration: const BoxDecoration(
-                // boxShadow: [
-                //   BoxShadow(
-                //       color: Colors.black,
-                //       blurRadius: 10.0,
-                //       spreadRadius: 0.0,
-                //       offset: Offset(1.0, 2.0))
-                // ],
-                // color: Color(0xff696870),
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [Color(0xff696870), Colors.transparent],
+            GestureDetector(
+              onTap: () => Navigator.of(context).pushReplacement(
+                PageRouteBuilder(
+                  pageBuilder: (context, animation, secondaryAnimation) =>
+                      const HomePage(),
+                  settings: const RouteSettings(name: '/home'),
                 ),
               ),
-              child: TextButton(
-                child: const Text(
-                  "Sign in",
-                  style: TextStyle(color: Colors.black, fontSize: 18),
-                  textAlign: TextAlign.center,
+              child: Container(
+                height: 60,
+                alignment: Alignment.center,
+                decoration: const BoxDecoration(
+                  // boxShadow: [
+                  //   BoxShadow(
+                  //       color: Colors.black,
+                  //       blurRadius: 10.0,
+                  //       spreadRadius: 0.0,
+                  //       offset: Offset(1.0, 2.0))
+                  // ],
+                  // color: Color(0xff696870),
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [Color(0xff696870), Colors.transparent],
+                  ),
                 ),
-                onPressed: () {
-                  // _getSalvar("Teste");
-                  Navigator.of(context).pushReplacement(
-                    PageRouteBuilder(
-                      pageBuilder: (context, animation, secondaryAnimation) =>
-                          const HomePage(),
-                      settings: const RouteSettings(name: '/home'),
-                    ),
-                  );
-                },
+                child: const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 12, horizontal: 24),
+                  child: Text('Sign in'),
+                ),
               ),
             ),
             Container(
