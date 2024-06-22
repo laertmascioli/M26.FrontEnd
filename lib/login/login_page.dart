@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:m26/forgotPwd/forgotPwd_page.dart';
+import 'package:m26/forgotpassword/forgotpassword_page.dart';
 import 'package:m26/home/home_page.dart';
 import 'package:m26/register/register_page.dart';
 // import 'package:password_dart/password_dart.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -19,7 +19,7 @@ class _LoginPageState extends State<LoginPage> {
   var width = 0.0;
   var height = 0.0;
   var align = Alignment.topCenter;
-  final _formKey = GlobalKey<FormState>();
+  // final _formKey = GlobalKey<FormState>();
   final _txtUsername = TextEditingController();
   final _txtPassword = TextEditingController();
 
@@ -258,17 +258,17 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  _getSalvar(String id) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
+  // _getSalvar(String id) async {
+  //   SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    prefs.setString('Email', _txtUsername.text);
-    prefs.setString('Senha', _txtPassword.text);
-    // prefs.setString('Senha', Password.hash(_txtPassword.text, PBKDF2()));
-    prefs.setString('UserID', id);
+  //   prefs.setString('Email', _txtUsername.text);
+  //   prefs.setString('Senha', _txtPassword.text);
+  //   // prefs.setString('Senha', Password.hash(_txtPassword.text, PBKDF2()));
+  //   prefs.setString('UserID', id);
 
-    var teste = prefs.getString('Senha');
+  //   // var teste = prefs.getString('Senha');
 
-    //Código de validação da senha
-    // Password.verify(_txtPassword.text, prefs.getString('Senha'));
-  }
+  //   //Código de validação da senha
+  //   // Password.verify(_txtPassword.text, prefs.getString('Senha'));
+  // }
 }

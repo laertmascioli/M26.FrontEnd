@@ -1,9 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-
 import 'package:http/http.dart' as http;
 
-class Login_Service {
+class LoginService {
   Dio dio = Dio();
 
   getLogin(String email, String senha) async {
@@ -47,11 +46,10 @@ class Login_Service {
   }
 
   putSenha(final context, String cpf, String senha) async {
-    final response = await http.put(Uri.parse(
-        'https://apiseverinos.azurewebsites.net/api/Login/' +
-            cpf +
-            "/" +
-            senha));
+    final response = await http.put(
+      Uri.parse(
+          'https://apiseverinos.azurewebsites.net/api/Login/ $cpf / $senha'),
+    );
 
     if (response.statusCode == 200) {
       return response.body;

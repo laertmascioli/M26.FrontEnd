@@ -1,9 +1,9 @@
-class Login_Model {
+class LoginModel {
   final String username;
   final String password;
   final String token;
 
-  Login_Model({
+  LoginModel({
     required this.username,
     required this.password,
     this.token = "",
