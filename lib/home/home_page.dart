@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:m26/editregister/editregister_page.dart';
 import 'package:m26/login/login_page.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,9 +62,15 @@ class HomePage extends StatelessWidget {
                 ),
                 ListTile(
                   leading: const Icon(Icons.edit),
-                  title: const Text("Editar perfil"),
+                  title: const Text("Edit registration"),
                   onTap: () {
-                    // Get.to(EditCad());
+                    Navigator.of(context).pushReplacement(
+                      PageRouteBuilder(
+                        pageBuilder: (context, animation, secondaryAnimation) =>
+                            const EditRegisterPage(),
+                        settings: const RouteSettings(name: '/editreg'),
+                      ),
+                    );
                   },
                 ),
                 ListTile(
@@ -129,7 +141,13 @@ class HomePage extends StatelessWidget {
                   leading: const Icon(Icons.logout),
                   title: const Text("Logout"),
                   onTap: () {
-                    (_) => const LoginPage();
+                    Navigator.of(context).pushReplacement(
+                      PageRouteBuilder(
+                        pageBuilder: (context, animation, secondaryAnimation) =>
+                            const LoginPage(),
+                        settings: const RouteSettings(name: '/login'),
+                      ),
+                    );
                   },
                 ),
               ],
