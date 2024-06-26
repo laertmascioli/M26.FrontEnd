@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:m26/home/home_page.dart';
 
 class EditRegisterPage extends StatelessWidget {
   const EditRegisterPage({super.key});
@@ -27,6 +28,26 @@ class EditRegisterPage extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
         ],
+      ),
+      leadingWidth: 25,
+      leading: Builder(
+        builder: (context) {
+          return InkWell(
+            onTap: () {
+              Navigator.of(context).pushReplacement(
+                PageRouteBuilder(
+                  pageBuilder: (context, animation, secondaryAnimation) =>
+                      const HomePage(),
+                ),
+              );
+            },
+            child: const Row(
+              children: [
+                Icon(Icons.arrow_back_ios_new_outlined),
+              ],
+            ),
+          );
+        },
       ),
       flexibleSpace: Container(
         decoration: const BoxDecoration(

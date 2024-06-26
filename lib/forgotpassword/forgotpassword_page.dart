@@ -23,6 +23,12 @@ class ForgotPasswordPage extends StatelessWidget {
             ),
           ],
         ),
+        leadingWidth: 200,
+        leading: const Row(
+          children: [
+            Icon(Icons.arrow_back_ios_new_outlined),
+          ],
+        ),
         flexibleSpace: Container(
           decoration: const BoxDecoration(
             gradient: LinearGradient(

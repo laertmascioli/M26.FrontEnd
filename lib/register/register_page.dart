@@ -20,12 +20,17 @@ class RegisterPage extends StatelessWidget {
             child: Hero(
                 tag: 'imageLogin', child: Image.asset('assets/Icone_M26.png')),
           ),
-          const SizedBox(width: 120),
+          const SizedBox(width: 75),
           const Text(
             'Register',
             style: TextStyle(fontSize: 18, color: Colors.white),
             textAlign: TextAlign.center,
           ),
+        ],
+      ),
+      leading: const Row(
+        children: [
+          Icon(Icons.arrow_back_ios_new_outlined),
         ],
       ),
       flexibleSpace: Container(
