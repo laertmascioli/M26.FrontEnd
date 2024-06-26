@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:m26/login/login_page.dart';
 
 class RegisterPage extends StatelessWidget {
   const RegisterPage({super.key});
@@ -28,10 +29,25 @@ class RegisterPage extends StatelessWidget {
           ),
         ],
       ),
-      leading: const Row(
-        children: [
-          Icon(Icons.arrow_back_ios_new_outlined),
-        ],
+      leadingWidth: 25,
+      leading: Builder(
+        builder: (context) {
+          return InkWell(
+            onTap: () {
+              Navigator.of(context).pushReplacement(
+                PageRouteBuilder(
+                  pageBuilder: (context, animation, secondaryAnimation) =>
+                      const LoginPage(),
+                ),
+              );
+            },
+            child: const Row(
+              children: [
+                Icon(Icons.arrow_back_ios_new_outlined),
+              ],
+            ),
+          );
+        },
       ),
       flexibleSpace: Container(
         decoration: const BoxDecoration(
