@@ -1,6 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:m26/agents/agents_page.dart';
+import 'package:m26/bonus/bonus_page.dart';
+import 'package:m26/categories/categories_page.dart';
+import 'package:m26/clubs/clubs_page.dart';
+import 'package:m26/countries/countries_page.dart';
+import 'package:m26/currency/currency_page.dart';
 import 'package:m26/editregister/editregister_page.dart';
 import 'package:m26/login/login_page.dart';
+import 'package:m26/players/players_page.dart';
+import 'package:m26/positions/positions_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -75,58 +83,98 @@ class _HomePageState extends State<HomePage> {
                 ),
                 ListTile(
                   leading: const Icon(Icons.edit),
-                  title: const Text("Cadastro categorias"),
+                  title: const Text("Categories"),
                   onTap: () {
-                    // Get.to(EditCad());
+                    Navigator.of(context).pushReplacement(
+                      PageRouteBuilder(
+                        pageBuilder: (context, animation, secondaryAnimation) =>
+                            const CategoriesPage(),
+                      ),
+                    );
                   },
                 ),
                 ListTile(
                   leading: const Icon(Icons.edit),
-                  title: const Text("Cadastro posições"),
+                  title: const Text("Positions"),
                   onTap: () {
-                    // Get.to(EditCad());
+                    Navigator.of(context).pushReplacement(
+                      PageRouteBuilder(
+                        pageBuilder: (context, animation, secondaryAnimation) =>
+                            const PositionsPage(),
+                      ),
+                    );
                   },
                 ),
                 ListTile(
                   leading: const Icon(Icons.edit),
-                  title: const Text("Cadastro moedas"),
+                  title: const Text("Currency"),
                   onTap: () {
-                    // Get.to(EditCad());
+                    Navigator.of(context).pushReplacement(
+                      PageRouteBuilder(
+                        pageBuilder: (context, animation, secondaryAnimation) =>
+                            const CurrencyPage(),
+                      ),
+                    );
                   },
                 ),
                 ListTile(
                   leading: const Icon(Icons.edit),
-                  title: const Text("Cadastro bonus"),
+                  title: const Text("Bonus"),
                   onTap: () {
-                    // Get.to(EditCad());
+                    Navigator.of(context).pushReplacement(
+                      PageRouteBuilder(
+                        pageBuilder: (context, animation, secondaryAnimation) =>
+                            const BonusPage(),
+                      ),
+                    );
                   },
                 ),
                 ListTile(
                   leading: const Icon(Icons.edit),
-                  title: const Text("Cadastro paises"),
+                  title: const Text("Countries"),
                   onTap: () {
-                    // Get.to(EditCad());
+                    Navigator.of(context).pushReplacement(
+                      PageRouteBuilder(
+                        pageBuilder: (context, animation, secondaryAnimation) =>
+                            const CountriesPage(),
+                      ),
+                    );
                   },
                 ),
                 ListTile(
                   leading: const Icon(Icons.edit),
-                  title: const Text("Cadastro agentes"),
+                  title: const Text("Agents"),
                   onTap: () {
-                    // Get.to(EditCad());
+                    Navigator.of(context).pushReplacement(
+                      PageRouteBuilder(
+                        pageBuilder: (context, animation, secondaryAnimation) =>
+                            const AgentsPage(),
+                      ),
+                    );
                   },
                 ),
                 ListTile(
                   leading: const Icon(Icons.edit),
-                  title: const Text("Cadastro jogadores/tecnicos"),
+                  title: const Text("Players/Coaches"),
                   onTap: () {
-                    // Get.to(EditCad());
+                    Navigator.of(context).pushReplacement(
+                      PageRouteBuilder(
+                        pageBuilder: (context, animation, secondaryAnimation) =>
+                            const PlayersPage(),
+                      ),
+                    );
                   },
                 ),
                 ListTile(
                   leading: const Icon(Icons.edit),
-                  title: const Text("Cadastro clubes"),
+                  title: const Text("Clubs"),
                   onTap: () {
-                    // Get.to(EditCad());
+                    Navigator.of(context).pushReplacement(
+                      PageRouteBuilder(
+                        pageBuilder: (context, animation, secondaryAnimation) =>
+                            const ClubsPage(),
+                      ),
+                    );
                   },
                 ),
               ],

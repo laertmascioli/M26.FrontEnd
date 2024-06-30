@@ -1,21 +1,37 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:m26/Custom/globals.dart';
+import 'package:m26/login/login_model.dart';
 
 class LoginService {
   Dio dio = Dio();
 
-  getLogin(String email, String senha) async {
+  getLogin(String username, String password) async {
     try {
-      final dio = Dio();
-      var response = await dio.get(
-          "https://apiseverinos.azurewebsites.net/api/Login/$email/$senha");
+      // final loginModel = LoginModel(username, password);
+      final loginModel = LoginModel('jmascioli', '123456');
+
+      var headers = {'Content-Type': 'application/json'};
+
+      // var request =
+      //     http.Request('POST', Uri.parse('${Globals().urlApi}User/login'));
+
+      var request = http.Request(
+          'POST', Uri.parse('https://10.0.2.2:7026/api/User/login'));
+
+      request.body = jsonEncode(loginModel.toJson());
+      request.headers.addAll(headers);
+
+      http.StreamedResponse response = await request.send();
 
       if (response.statusCode == 200) {
-        return response.data;
+        return response;
       } else {
         AlertDialog(
-          title: Text(response.statusMessage.toString()),
+          title: Text(response.reasonPhrase.toString()),
         );
       }
     } on DioException catch (error) {

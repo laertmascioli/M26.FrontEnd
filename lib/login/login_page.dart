@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:m26/forgotpassword/forgotpassword_page.dart';
 import 'package:m26/home/home_page.dart';
+import 'package:m26/login/login_service.dart';
 import 'package:m26/register/register_page.dart';
 // import 'package:password_dart/password_dart.dart';
 // import 'package:shared_preferences/shared_preferences.dart';
@@ -22,6 +23,7 @@ class _LoginPageState extends State<LoginPage> {
   // final _formKey = GlobalKey<FormState>();
   final _txtUsername = TextEditingController();
   final _txtPassword = TextEditingController();
+  final service = LoginService();
 
   @override
   void initState() {
@@ -42,6 +44,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       extendBodyBehindAppBar: true,
       appBar: _getAppBar(),
       body: _getBody(),
@@ -156,13 +159,15 @@ class _LoginPageState extends State<LoginPage> {
               height: 10,
             ),
             GestureDetector(
-              onTap: () => Navigator.of(context).pushReplacement(
-                PageRouteBuilder(
-                  pageBuilder: (context, animation, secondaryAnimation) =>
-                      const HomePage(),
-                  settings: const RouteSettings(name: '/home'),
-                ),
-              ),
+              onTap: () =>
+                  service.getLogin(_txtUsername.text, _txtPassword.text),
+              //   Navigator.of(context).pushReplacement(
+              // PageRouteBuilder(
+              //   pageBuilder: (context, animation, secondaryAnimation) =>
+              //       const HomePage(),
+              //   settings: const RouteSettings(name: '/home'),
+              // ),
+              // ),
               child: Container(
                 height: 60,
                 alignment: Alignment.center,
