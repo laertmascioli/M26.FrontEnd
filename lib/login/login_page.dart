@@ -3,6 +3,7 @@ import 'package:m26/forgotpassword/forgotpassword_page.dart';
 import 'package:m26/home/home_page.dart';
 import 'package:m26/login/login_service.dart';
 import 'package:m26/register/register_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 // import 'package:password_dart/password_dart.dart';
 // import 'package:shared_preferences/shared_preferences.dart';
 
@@ -20,10 +21,11 @@ class _LoginPageState extends State<LoginPage> {
   var width = 0.0;
   var height = 0.0;
   var align = Alignment.topCenter;
-  // final _formKey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
   final _txtUsername = TextEditingController();
   final _txtPassword = TextEditingController();
   final service = LoginService();
+  var response = '';
 
   @override
   void initState() {
@@ -63,6 +65,7 @@ class _LoginPageState extends State<LoginPage> {
 
   _getBody() {
     return Container(
+      key: _formKey,
       padding: const EdgeInsets.all(27),
       alignment: Alignment.center,
       decoration: const BoxDecoration(
@@ -159,15 +162,37 @@ class _LoginPageState extends State<LoginPage> {
               height: 10,
             ),
             GestureDetector(
-              onTap: () =>
-                  service.getLogin(_txtUsername.text, _txtPassword.text),
-              //   Navigator.of(context).pushReplacement(
-              // PageRouteBuilder(
-              //   pageBuilder: (context, animation, secondaryAnimation) =>
-              //       const HomePage(),
-              //   settings: const RouteSettings(name: '/home'),
-              // ),
-              // ),
+              onTap: () async {
+                if (_txtUsername.text.isEmpty) {
+                  response = await service.getLogin(
+                      _txtUsername.text, _txtPassword.text);
+                } else if (_txtPassword.text.isEmpty) {
+                  response = await service.getLogin(
+                      _txtUsername.text, _txtPassword.text);
+                } else {
+                  bool user = await service.getLogin(
+                      _txtUsername.text, _txtPassword.text);
+                  // Map<String, dynamic> user = await service.getLogin(
+                  //     _txtUsername.text, _txtPassword.text);
+
+                  // String token = user['token'].toString();
+                  if (user) {
+                    _getSalvar();
+                    // ignore: use_build_context_synchronously
+                    Navigator.of(context).pushReplacement(
+                      PageRouteBuilder(
+                        pageBuilder: (context, animation, secondaryAnimation) =>
+                            const HomePage(),
+                        settings: const RouteSettings(name: '/home'),
+                      ),
+                    );
+                  } else {
+                    const AlertDialog(
+                      title: Text('Invalid Username or Password.'),
+                    );
+                  }
+                }
+              },
               child: Container(
                 height: 60,
                 alignment: Alignment.center,
@@ -259,17 +284,18 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  // _getSalvar(String id) async {
-  //   SharedPreferences prefs = await SharedPreferences.getInstance();
+  _getSalvar() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
 
-  //   prefs.setString('Email', _txtUsername.text);
-  //   prefs.setString('Senha', _txtPassword.text);
-  //   // prefs.setString('Senha', Password.hash(_txtPassword.text, PBKDF2()));
-  //   prefs.setString('UserID', id);
+    prefs.setString('username', _txtUsername.text);
+    prefs.setString('password', _txtPassword.text);
+    // prefs.setString('Senha', Password.hash(_txtPassword.text, PBKDF2()));
+    // prefs.setString('UserID', id);
+    // prefs.setString('token', id);
 
-  //   // var teste = prefs.getString('Senha');
+    // var teste = prefs.getString('Senha');
 
-  //   //Código de validação da senha
-  //   // Password.verify(_txtPassword.text, prefs.getString('Senha'));
-  // }
+    //Código de validação da senha
+    // Password.verify(_txtPassword.text, prefs.getString('Senha'));
+  }
 }
