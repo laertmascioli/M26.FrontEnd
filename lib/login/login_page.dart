@@ -107,7 +107,9 @@ class _LoginPageState extends State<LoginPage> {
             Opacity(
               opacity: 0.5,
               child: TextFormField(
-                keyboardType: TextInputType.emailAddress,
+                style: const TextStyle(color: Colors.black),
+                keyboardType: TextInputType.name,
+                textInputAction: TextInputAction.next,
                 controller: _txtUsername,
                 decoration: const InputDecoration(
                   prefixIcon: Padding(
@@ -135,7 +137,9 @@ class _LoginPageState extends State<LoginPage> {
             Opacity(
               opacity: 0.5,
               child: TextFormField(
+                style: const TextStyle(color: Colors.black),
                 keyboardType: TextInputType.text,
+                textInputAction: TextInputAction.done,
                 controller: _txtPassword,
                 obscureText: true,
                 decoration: const InputDecoration(
@@ -176,6 +180,7 @@ class _LoginPageState extends State<LoginPage> {
                   //     _txtUsername.text, _txtPassword.text);
 
                   // String token = user['token'].toString();
+
                   if (user) {
                     _getSalvar();
                     // ignore: use_build_context_synchronously
@@ -187,9 +192,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     );
                   } else {
-                    const AlertDialog(
-                      title: Text('Invalid Username or Password.'),
-                    );
+                    _showMyDialog('Invalid Username or Password.');
                   }
                 }
               },
@@ -297,5 +300,31 @@ class _LoginPageState extends State<LoginPage> {
 
     //Código de validação da senha
     // Password.verify(_txtPassword.text, prefs.getString('Senha'));
+  }
+
+  Future<void> _showMyDialog(String message) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text(message),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('Ok'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 }
