@@ -41,7 +41,7 @@ class _RegisterPageState extends State<RegisterPage> {
             child: Hero(
                 tag: 'imageLogin', child: Image.asset('assets/Icone_M26.png')),
           ),
-          const SizedBox(width: 75),
+          const SizedBox(width: 100),
           const Text(
             'Register',
             style: TextStyle(fontSize: 18, color: Colors.white),
@@ -145,6 +145,8 @@ class _RegisterPageState extends State<RegisterPage> {
               height: 30,
             ),
             TextFormField(
+              style: const TextStyle(color: Colors.black),
+              textInputAction: TextInputAction.next,
               decoration: const InputDecoration(
                 prefixIcon: Padding(
                   padding: EdgeInsets.all(0.0),
@@ -165,6 +167,8 @@ class _RegisterPageState extends State<RegisterPage> {
               height: 5,
             ),
             TextFormField(
+              style: const TextStyle(color: Colors.black),
+              textInputAction: TextInputAction.next,
               decoration: const InputDecoration(
                 prefixIcon: Padding(
                   padding: EdgeInsets.all(0.0),
@@ -185,6 +189,9 @@ class _RegisterPageState extends State<RegisterPage> {
               height: 5,
             ),
             TextFormField(
+              style: const TextStyle(color: Colors.black),
+              textInputAction: TextInputAction.next,
+              keyboardType: TextInputType.emailAddress,
               decoration: const InputDecoration(
                 prefixIcon: Padding(
                   padding: EdgeInsets.all(0.0),
@@ -205,6 +212,8 @@ class _RegisterPageState extends State<RegisterPage> {
               height: 5,
             ),
             TextFormField(
+              style: const TextStyle(color: Colors.black),
+              textInputAction: TextInputAction.next,
               decoration: const InputDecoration(
                 prefixIcon: Padding(
                   padding: EdgeInsets.all(0.0),
@@ -225,6 +234,8 @@ class _RegisterPageState extends State<RegisterPage> {
               height: 5,
             ),
             TextFormField(
+              style: const TextStyle(color: Colors.black),
+              textInputAction: TextInputAction.next,
               decoration: const InputDecoration(
                 prefixIcon: Padding(
                   padding: EdgeInsets.all(0.0),
@@ -245,6 +256,9 @@ class _RegisterPageState extends State<RegisterPage> {
               height: 5,
             ),
             TextFormField(
+              style: const TextStyle(color: Colors.black),
+              textInputAction: TextInputAction.next,
+              obscureText: true,
               decoration: const InputDecoration(
                 prefixIcon: Padding(
                   padding: EdgeInsets.all(0.0),
@@ -254,6 +268,29 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                 ),
                 labelText: 'Password',
+                labelStyle: TextStyle(color: Colors.black),
+                border: InputBorder.none,
+                fillColor: Color(0xffbbc1c1),
+                filled: true,
+              ),
+              controller: _txtPassword,
+            ),
+            const SizedBox(
+              height: 5,
+            ),
+            TextFormField(
+              style: const TextStyle(color: Colors.black),
+              textInputAction: TextInputAction.done,
+              obscureText: true,
+              decoration: const InputDecoration(
+                prefixIcon: Padding(
+                  padding: EdgeInsets.all(0.0),
+                  child: Icon(
+                    Icons.lock_outline,
+                    color: Colors.black,
+                  ),
+                ),
+                labelText: 'confirm password',
                 labelStyle: TextStyle(color: Colors.black),
                 border: InputBorder.none,
                 fillColor: Color(0xffbbc1c1),
