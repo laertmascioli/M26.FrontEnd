@@ -1,14 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:m26/home/home_page.dart';
+import 'package:m26/categories/categories_model.dart';
+import 'package:m26/categories/categories_service.dart';
+import 'package:m26/login/login_page.dart';
 
-class PositionsPage extends StatelessWidget {
+class PositionsPage extends StatefulWidget {
   const PositionsPage({super.key});
+
+  @override
+  State<PositionsPage> createState() => _RegisterPageState();
+}
+
+class _RegisterPageState extends State<PositionsPage> {
+  var width = 0.0;
+  var height = 0.0;
+  var align = Alignment.topCenter;
+  // final _formKey = GlobalKey<FormState>();
+  final _txtCode = TextEditingController();
+  final _txtName = TextEditingController();
+  final _txtDescription = TextEditingController();
+  final service = CategoriesService();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _getAppBar(),
       body: _getBody(),
+      floatingActionButton: _getFloatingActionButton(),
     );
   }
 
@@ -21,7 +38,7 @@ class PositionsPage extends StatelessWidget {
             child: Hero(
                 tag: 'imageLogin', child: Image.asset('assets/Icone_M26.png')),
           ),
-          const SizedBox(width: 120),
+          const SizedBox(width: 100),
           const Text(
             'Positions',
             style: TextStyle(fontSize: 18, color: Colors.white),
@@ -37,7 +54,7 @@ class PositionsPage extends StatelessWidget {
               Navigator.of(context).pushReplacement(
                 PageRouteBuilder(
                   pageBuilder: (context, animation, secondaryAnimation) =>
-                      const HomePage(),
+                      const LoginPage(),
                 ),
               );
             },
@@ -60,6 +77,35 @@ class PositionsPage extends StatelessWidget {
     );
   }
 
+  _getFloatingActionButton() {
+    return Opacity(
+      opacity: 0.5,
+      child: FloatingActionButton.extended(
+        onPressed: () async {
+          bool response = await service.addCategory(
+            CategoriesModel(_txtCode.text, _txtName.text, _txtDescription.text),
+          );
+
+          if (response) {
+            _showMyDialog("Category created");
+          }
+        },
+        backgroundColor: const Color(0xffbbc1c1),
+        icon: const Icon(
+          Icons.save_outlined,
+          color: Colors.black,
+        ),
+        label: const Text(
+          'Save',
+          style: TextStyle(
+              letterSpacing: 0,
+              fontWeight: FontWeight.bold,
+              color: Colors.black),
+        ),
+      ),
+    );
+  }
+
   _getBody() {
     return Container(
       padding: const EdgeInsets.all(27),
@@ -77,119 +123,97 @@ class PositionsPage extends StatelessWidget {
               height: 30,
             ),
             TextFormField(
+              style: const TextStyle(color: Colors.black),
+              textInputAction: TextInputAction.next,
               decoration: const InputDecoration(
                 prefixIcon: Padding(
                   padding: EdgeInsets.all(0.0),
                   child: Icon(
-                    Icons.person_outline_rounded,
+                    Icons.format_list_numbered,
                     color: Colors.black,
                   ),
                 ),
-                labelText: 'Firstname',
+                labelText: 'Code',
                 labelStyle: TextStyle(color: Colors.black),
                 border: InputBorder.none,
                 fillColor: Color(0xffbbc1c1),
                 filled: true,
               ),
+              controller: _txtCode,
             ),
             const SizedBox(
               height: 5,
             ),
             TextFormField(
+              style: const TextStyle(color: Colors.black),
+              textInputAction: TextInputAction.next,
               decoration: const InputDecoration(
                 prefixIcon: Padding(
                   padding: EdgeInsets.all(0.0),
                   child: Icon(
-                    Icons.person_outline_rounded,
+                    Icons.abc,
                     color: Colors.black,
                   ),
                 ),
-                labelText: 'Lastname',
+                labelText: 'Name',
                 labelStyle: TextStyle(color: Colors.black),
                 border: InputBorder.none,
                 fillColor: Color(0xffbbc1c1),
                 filled: true,
               ),
+              controller: _txtName,
             ),
             const SizedBox(
               height: 5,
             ),
             TextFormField(
+              style: const TextStyle(color: Colors.black),
+              textInputAction: TextInputAction.done,
               decoration: const InputDecoration(
                 prefixIcon: Padding(
                   padding: EdgeInsets.all(0.0),
                   child: Icon(
-                    Icons.email_outlined,
+                    Icons.description,
                     color: Colors.black,
                   ),
                 ),
-                labelText: 'E-mail',
+                labelText: 'Description',
                 labelStyle: TextStyle(color: Colors.black),
                 border: InputBorder.none,
                 fillColor: Color(0xffbbc1c1),
                 filled: true,
               ),
-            ),
-            const SizedBox(
-              height: 5,
-            ),
-            TextFormField(
-              decoration: const InputDecoration(
-                prefixIcon: Padding(
-                  padding: EdgeInsets.all(0.0),
-                  child: Icon(
-                    Icons.phone_android_outlined,
-                    color: Colors.black,
-                  ),
-                ),
-                labelText: 'Telephone',
-                labelStyle: TextStyle(color: Colors.black),
-                border: InputBorder.none,
-                fillColor: Color(0xffbbc1c1),
-                filled: true,
-              ),
-            ),
-            const SizedBox(
-              height: 5,
-            ),
-            TextFormField(
-              decoration: const InputDecoration(
-                prefixIcon: Padding(
-                  padding: EdgeInsets.all(0.0),
-                  child: Icon(
-                    Icons.account_circle_outlined,
-                    color: Colors.black,
-                  ),
-                ),
-                labelText: 'Username',
-                labelStyle: TextStyle(color: Colors.black),
-                border: InputBorder.none,
-                fillColor: Color(0xffbbc1c1),
-                filled: true,
-              ),
-            ),
-            const SizedBox(
-              height: 5,
-            ),
-            TextFormField(
-              decoration: const InputDecoration(
-                prefixIcon: Padding(
-                  padding: EdgeInsets.all(0.0),
-                  child: Icon(
-                    Icons.lock_outline,
-                    color: Colors.black,
-                  ),
-                ),
-                labelText: 'Password',
-                labelStyle: TextStyle(color: Colors.black),
-                border: InputBorder.none,
-                fillColor: Color(0xffbbc1c1),
-                filled: true,
-              ),
+              controller: _txtDescription,
             ),
           ],
         ),
       ),
+    );
+  }
+
+  Future<void> _showMyDialog(String message) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text(message),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('Ok'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }
