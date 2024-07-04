@@ -13,7 +13,8 @@ class LoginService {
   getLogin(String username, String password) async {
     try {
       // final loginModel = LoginModel(username, password);
-      final loginModel = LoginModel('jmascioli', '123456');
+      // final loginModel = LoginModel('jmascioli', '123456');
+      final loginModel = LoginModel('harley', '123456');
 
       final response = await http.post(
         Uri.parse('${Globals().urlApi}User/login'),

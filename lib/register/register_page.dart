@@ -1,14 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:m26/login/login_page.dart';
+import 'package:m26/register/register_model.dart';
+import 'package:m26/register/register_service.dart';
 
-class RegisterPage extends StatelessWidget {
+class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
+
+  @override
+  State<RegisterPage> createState() => _RegisterPageState();
+}
+
+class _RegisterPageState extends State<RegisterPage> {
+  var width = 0.0;
+  var height = 0.0;
+  var align = Alignment.topCenter;
+  // final _formKey = GlobalKey<FormState>();
+  final _txtUserName = TextEditingController();
+  final _txtFirstname = TextEditingController();
+  final _txtLastname = TextEditingController();
+  final _txtPassword = TextEditingController();
+  final _txtEmail = TextEditingController();
+  final _txtTelephone = TextEditingController();
+  final service = RegisterService();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _getAppBar(),
       body: _getBody(),
+      floatingActionButton: _getFloatingActionButton(),
     );
   }
 
@@ -60,6 +80,54 @@ class RegisterPage extends StatelessWidget {
     );
   }
 
+  _getFloatingActionButton() {
+    return Opacity(
+      opacity: 0.5,
+      child: FloatingActionButton.extended(
+        onPressed: () async {
+          bool response = await service.addUser(
+            RegisterModel(
+                _txtUserName.text,
+                _txtFirstname.text,
+                _txtLastname.text,
+                _txtPassword.text,
+                _txtEmail.text,
+                "D",
+                "2024-07-03",
+                "2024-07-03",
+                "2024-07-03",
+                "Y",
+                "Y",
+                "Y"),
+          );
+
+          if (response) {
+            // ignore: use_build_context_synchronously
+            Navigator.of(context).pushReplacement(
+              PageRouteBuilder(
+                pageBuilder: (context, animation, secondaryAnimation) =>
+                    const LoginPage(),
+                settings: const RouteSettings(name: '/login'),
+              ),
+            );
+          }
+        },
+        backgroundColor: const Color(0xffbbc1c1),
+        icon: const Icon(
+          Icons.save_outlined,
+          color: Colors.black,
+        ),
+        label: const Text(
+          'Save',
+          style: TextStyle(
+              letterSpacing: 0,
+              fontWeight: FontWeight.bold,
+              color: Colors.black),
+        ),
+      ),
+    );
+  }
+
   _getBody() {
     return Container(
       padding: const EdgeInsets.all(27),
@@ -91,6 +159,7 @@ class RegisterPage extends StatelessWidget {
                 fillColor: Color(0xffbbc1c1),
                 filled: true,
               ),
+              controller: _txtFirstname,
             ),
             const SizedBox(
               height: 5,
@@ -110,6 +179,7 @@ class RegisterPage extends StatelessWidget {
                 fillColor: Color(0xffbbc1c1),
                 filled: true,
               ),
+              controller: _txtLastname,
             ),
             const SizedBox(
               height: 5,
@@ -129,6 +199,7 @@ class RegisterPage extends StatelessWidget {
                 fillColor: Color(0xffbbc1c1),
                 filled: true,
               ),
+              controller: _txtEmail,
             ),
             const SizedBox(
               height: 5,
@@ -148,6 +219,7 @@ class RegisterPage extends StatelessWidget {
                 fillColor: Color(0xffbbc1c1),
                 filled: true,
               ),
+              controller: _txtTelephone,
             ),
             const SizedBox(
               height: 5,
@@ -167,6 +239,7 @@ class RegisterPage extends StatelessWidget {
                 fillColor: Color(0xffbbc1c1),
                 filled: true,
               ),
+              controller: _txtUserName,
             ),
             const SizedBox(
               height: 5,
@@ -186,6 +259,7 @@ class RegisterPage extends StatelessWidget {
                 fillColor: Color(0xffbbc1c1),
                 filled: true,
               ),
+              controller: _txtPassword,
             ),
           ],
         ),
