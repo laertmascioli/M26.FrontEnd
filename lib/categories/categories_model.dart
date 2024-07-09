@@ -2,9 +2,9 @@ import 'package:json_annotation/json_annotation.dart';
 
 @JsonSerializable()
 class CategoriesModel {
-  final String categoryCode;
-  final String categoryName;
-  final String categoryDescription;
+  final String? categoryCode;
+  final String? categoryName;
+  final String? categoryDescription;
 
   CategoriesModel(
     this.categoryCode,

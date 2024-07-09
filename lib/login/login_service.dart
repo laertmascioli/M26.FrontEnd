@@ -26,7 +26,7 @@ class LoginService {
 
       if (response.statusCode == 200) {
         var user = jsonDecode(response.body);
-        _getSalvar(user['id'].toString(), user['token'].toString());
+        _getSalvar(user['id'].toString(), user['token']);
         return true;
       } else {
         AlertDialog(

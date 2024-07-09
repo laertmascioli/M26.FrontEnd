@@ -190,6 +190,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.4.3+1"
+  dropdown_button2:
+    dependency: "direct main"
+    description:
+      name: dropdown_button2
+      sha256: b0fe8d49a030315e9eef6c7ac84ca964250155a6224d491c1365061bc974a9e1
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.3.9"
+  dropdownfield2:
+    dependency: "direct main"
+    description:
+      name: dropdownfield2
+      sha256: "83d7c25c253f64d86d3541543b5a118b150acd2810e0f57330c970e81032db35"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.7"
   fake_async:
     dependency: transitive
     description:

@@ -7,17 +7,21 @@ class PositionsPage extends StatefulWidget {
   const PositionsPage({super.key});
 
   @override
-  State<PositionsPage> createState() => _RegisterPageState();
+  State<PositionsPage> createState() => _PositionsPageState();
 }
 
-class _RegisterPageState extends State<PositionsPage> {
+class _PositionsPageState extends State<PositionsPage> {
   var width = 0.0;
   var height = 0.0;
   var align = Alignment.topCenter;
+  final dropValue = "";
+  dynamic list;
   // final _formKey = GlobalKey<FormState>();
   final _txtCode = TextEditingController();
   final _txtName = TextEditingController();
-  final _txtDescription = TextEditingController();
+  final _txtCategory = TextEditingController();
+  var _selectedCategoryId = '';
+
   final service = CategoriesService();
 
   @override
@@ -83,7 +87,7 @@ class _RegisterPageState extends State<PositionsPage> {
       child: FloatingActionButton.extended(
         onPressed: () async {
           bool response = await service.addCategory(
-            CategoriesModel(_txtCode.text, _txtName.text, _txtDescription.text),
+            CategoriesModel(_txtCode.text, _txtName.text, _txtCategory.text),
           );
 
           if (response) {
@@ -133,7 +137,7 @@ class _RegisterPageState extends State<PositionsPage> {
                     color: Colors.black,
                   ),
                 ),
-                labelText: 'Code',
+                labelText: 'Position code',
                 labelStyle: TextStyle(color: Colors.black),
                 border: InputBorder.none,
                 fillColor: Color(0xffbbc1c1),
@@ -142,7 +146,7 @@ class _RegisterPageState extends State<PositionsPage> {
               controller: _txtCode,
             ),
             const SizedBox(
-              height: 5,
+              height: 10,
             ),
             TextFormField(
               style: const TextStyle(color: Colors.black),
@@ -155,7 +159,7 @@ class _RegisterPageState extends State<PositionsPage> {
                     color: Colors.black,
                   ),
                 ),
-                labelText: 'Name',
+                labelText: 'Position name',
                 labelStyle: TextStyle(color: Colors.black),
                 border: InputBorder.none,
                 fillColor: Color(0xffbbc1c1),
@@ -164,26 +168,40 @@ class _RegisterPageState extends State<PositionsPage> {
               controller: _txtName,
             ),
             const SizedBox(
-              height: 5,
+              height: 10,
             ),
-            TextFormField(
-              style: const TextStyle(color: Colors.black),
-              textInputAction: TextInputAction.done,
-              decoration: const InputDecoration(
-                prefixIcon: Padding(
-                  padding: EdgeInsets.all(0.0),
-                  child: Icon(
-                    Icons.description,
-                    color: Colors.black,
-                  ),
-                ),
-                labelText: 'Description',
-                labelStyle: TextStyle(color: Colors.black),
-                border: InputBorder.none,
-                fillColor: Color(0xffbbc1c1),
-                filled: true,
+            Container(
+              decoration: const BoxDecoration(
+                color: Color(0xffbbc1c1),
               ),
-              controller: _txtDescription,
+              child: FutureBuilder<List<CategoriesModel>>(
+                future: service.getCategoryList(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    return DropdownButton(
+                      value: _selectedCategoryId,
+                      iconDisabledColor: Colors.black,
+                      hint: const Text('Select category'),
+                      dropdownColor: Colors.transparent,
+                      isExpanded: true,
+                      icon: const Icon(Icons.arrow_drop_down_rounded),
+                      // Array list of items
+                      items: snapshot.data!.map((item) {
+                        return DropdownMenuItem(
+                          value: item.categoryCode,
+                          child: Text(item.categoryName.toString()),
+                        );
+                      }).toList(),
+                      onChanged: (value) {
+                        _selectedCategoryId = value!;
+                        setState(() {});
+                      },
+                    );
+                  } else {
+                    return const Center(child: CircularProgressIndicator());
+                  }
+                },
+              ),
             ),
           ],
         ),
@@ -216,4 +234,38 @@ class _RegisterPageState extends State<PositionsPage> {
       },
     );
   }
+
+  // getCategoryList() async {
+  //   try {
+  //     final response = await http.get(
+  //       Uri.parse('${Globals().urlApi}Category/getall'),
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //         'Authorization': 'Bearer ${_getToken()}'
+  //       },
+  //     );
+
+  //     if (response.statusCode == 200) {
+  //       final body = json.decode(response.body) as List;
+
+  //       return body.map((dynamic json) {
+  //         final map = json as Map<String, dynamic>;
+  //         return CategoriesModel(
+  //             map['categoryCode'] as String,
+  //             map['categoryName'] as String,
+  //             map['categoryDescription'] as String);
+  //       }).toList();
+  //     }
+  //   } on DioException catch (error) {
+  //     AlertDialog(
+  //       title: Text(error.message.toString()),
+  //     );
+  //   }
+  // }
+
+  // _getToken() async {
+  //   SharedPreferences prefs = await SharedPreferences.getInstance();
+
+  //   return prefs.getString('token');
+  // }
 }

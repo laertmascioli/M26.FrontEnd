@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:m26/Custom/globals.dart';
 import 'package:m26/register/register_model.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class RegisterService {
   Dio dio = Dio();
