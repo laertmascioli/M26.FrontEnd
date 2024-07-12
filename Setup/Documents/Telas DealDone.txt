@@ -1,0 +1,31 @@
+  1.1
+  Cadastro de usuários
+  (Code, UserName, Firstname, Lastname, Email, Telephone, Username, Password, firstlogon, 
+   LastLogon, Usertype (combo), Active(Y/N) (combo), defaulter)
+  1.2 
+  Cadastro de categorias (Player, coach, referee)
+  (Code, Category Code, Category Name)  
+  1.3
+  Cadastro de posições
+  (Code, Position Code, Position Name, Category (combo) (cadastro de categorias 1.2))
+  1.4
+  Cadastro de moedas (List of ISO 4217 currency codes)
+  (Code, Currency code, Currency Name, Currency Num, decimal digits )  
+  1.5
+  Cadastro de bonus
+  (Code, Bonus code, Bonus Name)
+  1.6
+  Cadastro de países
+  (Code, Country code, Country Name, ISO CODE, Currency (combo)(cadastro de moedas 1.4))
+  1.7
+  Cadastro de Agentes
+  ()
+  1.8
+  Cadastro de jogadores/técnicos
+  ( Code, Name, Birth Date, Position (combo)(Cadastro de posições 1.3), Category (combo)(cadastro 1.2)
+    Foots, available for trial (combo) (Y/N), Video Highlights, Transfermarkt, Agente (combo)(cadastro 1.7),
+	Ogol, Salary expectations, Nationality (combo) (cadastro de países 1.6), photo, 
+	Last Contract, Height, Weight, Profile, achievements, contract situation)  
+  1.9
+  Cadastro de clubes
+  ()
